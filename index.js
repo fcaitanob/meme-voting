@@ -86,9 +86,11 @@ window.addEventListener('load', async () => {
 
 
   alert("Previo a inicializar el aepp object") ;
+  document.getElementById("regName").value = "Previo a inicializar el aepp object";
   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
   client = await Ae.Aepp();
   alert("Luego de inicializar el aepp object") ;
+  document.getElementById("regName").value = "Luego de inicializar el aepp object";
 
 
 
@@ -97,6 +99,7 @@ window.addEventListener('load', async () => {
   //Assign the value of meme length to the global variable
   memesLength = await callStatic('getMemesLength', []);
   alert("Luego de cargar memesLength con: " + memesLength) ;
+  document.getElementById("regName").value = "Luego de cargar el memesLengh con: " + memesLength;
 
 
 
