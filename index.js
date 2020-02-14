@@ -1,40 +1,33 @@
-const contractSource = '
+const contractSource = `
   payable contract MemeVote =
-
     record meme =
       { creatorAddress : address,
         url            : string,
         name           : string,
         voteCount      : int }
-
     record state =
       { memes      : map(int, meme),
         memesLength : int }
-
     entrypoint init() =
       { memes = {},
         memesLength = 0 }
-
     entrypoint getMeme(index : int) : meme =
       switch(Map.lookup(index, state.memes))
         None    => abort("There was no meme with this index registered.")
         Some(x) => x
-
     stateful entrypoint registerMeme(url' : string, name' : string) =
       let meme = { creatorAddress = Call.caller, url = url', name = name', voteCount = 0}
       let index = getMemesLength() + 1
       put(state{ memes[index] = meme, memesLength = index })
-
     entrypoint getMemesLength() : int =
       state.memesLength
-
     payable stateful entrypoint voteMeme(index : int) =
       let meme = getMeme(index)
       Chain.spend(meme.creatorAddress, Call.value)
       let updatedVoteCount = meme.voteCount + Call.value
       let updatedMemes = state.memes{ [index].voteCount = updatedVoteCount }
       put(state{ memes = updatedMemes })
-';
+`;
 
 //Address of the meme voting smart contract on the testnet of the aeternity blockchain
 const contractAddress = 'ct_2cZCZ5p3Tc9tx93LD5j6ePhUcq1jN9WoeWcuoiUBba2XkDZKAD';
@@ -85,9 +78,11 @@ window.addEventListener('load', async () => {
   //$("#loader").show();
 
 
+  //alert("Previo a inicializar el aepp object") ;
   document.getElementById("regName").value = "Previo a inicializar el aepp object";
   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
   client = await Ae.Aepp();
+  //alert("Luego de inicializar el aepp object") ;
   document.getElementById("regName").value = "Luego de inicializar el aepp object";
 
 
@@ -96,7 +91,7 @@ window.addEventListener('load', async () => {
   //First make a call to get to know how may memes have been created and need to be displayed
   //Assign the value of meme length to the global variable
   memesLength = await callStatic('getMemesLength', []);
-  document.getElementById("regName").value = "Luego de cargar el memesLengh con: " ;
+  document.getElementById("regName").value = "memesLenght cargado...";
 
 
 
@@ -104,10 +99,8 @@ window.addEventListener('load', async () => {
   //Loop over every meme to get all their relevant information
   /*
   for (let i = 1; i <= memesLength; i++) {
-
     //Make the call to the blockchain to get all relevant information on the meme
     const meme = await callStatic('getMeme', [i]);
-
     //Create meme object with  info from the call and push into the array with all memes
     memeArray.push({
       creatorName: meme.name,
