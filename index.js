@@ -37,7 +37,7 @@ const contractSource = `
 `;
 
 //Address of the meme voting smart contract on the testnet of the aeternity blockchain
-const contractAddress = 'ct_CxxTpqYdtqhzVjCtggeV4obBtwW6hLjsmTUhWzDXFS417Sqe6';
+const contractAddress = 'ct_2cZCZ5p3Tc9tx93LD5j6ePhUcq1jN9WoeWcuoiUBba2XkDZKAD';
 //Create variable for client so it can be used in different functions
 var client = null;
 //Create a new global array for the memes
@@ -92,6 +92,7 @@ window.addEventListener('load', async () => {
   memesLength = await callStatic('getMemesLength', []);
 
   //Loop over every meme to get all their relevant information
+  /*
   for (let i = 1; i <= memesLength; i++) {
 
     //Make the call to the blockchain to get all relevant information on the meme
@@ -105,6 +106,7 @@ window.addEventListener('load', async () => {
       votes: meme.voteCount,
     })
   }
+  */
 
   //Display updated memes
   renderMemes();
