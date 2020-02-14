@@ -84,17 +84,22 @@ window.addEventListener('load', async () => {
   //Display the loader animation so the user knows that something is happening
   //$("#loader").show();
 
+
+  alert("Previo a inicializar el aepp object") ;
   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
   client = await Ae.Aepp();
+  alert("Luego de inicializar el aepp object") ;
 
-  //Display the loader animation so the user knows that something is happening
-  $("#loader").show();
 
 
 
   //First make a call to get to know how may memes have been created and need to be displayed
   //Assign the value of meme length to the global variable
   memesLength = await callStatic('getMemesLength', []);
+  alert("Luego de cargar memesLength con: " + memesLength) ;
+
+
+
 
   //Loop over every meme to get all their relevant information
   /*
