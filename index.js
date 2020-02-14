@@ -78,26 +78,25 @@ window.addEventListener('load', async () => {
   //$("#loader").show();
 
 
-  //alert("Previo a inicializar el aepp object") ;
-  document.getElementById("regName").value = "Previo a inicializar el aepp object";
+  //msg de debug
+  document.getElementById("regName").value = "MSG1";
   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
   client = await Ae.Aepp();
-  //alert("Luego de inicializar el aepp object") ;
-  document.getElementById("regName").value = "Luego de inicializar el aepp object";
-
+  //msg de debug
+  document.getElementById("regName").value = "MSG2";
 
 
 
   //First make a call to get to know how may memes have been created and need to be displayed
   //Assign the value of meme length to the global variable
   memesLength = await callStatic('getMemesLength', []);
-  document.getElementById("regName").value = "memesLenght cargado...";
+  //msg de debug
+  document.getElementById("regName").value = "MSG3";
 
 
 
 
   //Loop over every meme to get all their relevant information
-  /*
   for (let i = 1; i <= memesLength; i++) {
     //Make the call to the blockchain to get all relevant information on the meme
     const meme = await callStatic('getMeme', [i]);
@@ -109,7 +108,6 @@ window.addEventListener('load', async () => {
       votes: meme.voteCount,
     })
   }
-  */
 
   //Display updated memes
   renderMemes();
