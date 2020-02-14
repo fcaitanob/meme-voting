@@ -1,4 +1,4 @@
-const contractSource = `
+const contractSource = '
   payable contract MemeVote =
 
     record meme =
@@ -34,7 +34,7 @@ const contractSource = `
       let updatedVoteCount = meme.voteCount + Call.value
       let updatedMemes = state.memes{ [index].voteCount = updatedVoteCount }
       put(state{ memes = updatedMemes })
-`;
+';
 
 //Address of the meme voting smart contract on the testnet of the aeternity blockchain
 const contractAddress = 'ct_2cZCZ5p3Tc9tx93LD5j6ePhUcq1jN9WoeWcuoiUBba2XkDZKAD';
@@ -85,11 +85,9 @@ window.addEventListener('load', async () => {
   //$("#loader").show();
 
 
-  alert("Previo a inicializar el aepp object") ;
   document.getElementById("regName").value = "Previo a inicializar el aepp object";
   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
   client = await Ae.Aepp();
-  alert("Luego de inicializar el aepp object") ;
   document.getElementById("regName").value = "Luego de inicializar el aepp object";
 
 
@@ -98,8 +96,7 @@ window.addEventListener('load', async () => {
   //First make a call to get to know how may memes have been created and need to be displayed
   //Assign the value of meme length to the global variable
   memesLength = await callStatic('getMemesLength', []);
-  alert("Luego de cargar memesLength con: " + memesLength) ;
-  document.getElementById("regName").value = "Luego de cargar el memesLengh con: " + memesLength;
+  document.getElementById("regName").value = "Luego de cargar el memesLengh con: " ;
 
 
 
